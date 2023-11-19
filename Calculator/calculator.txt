@@ -1,41 +1,41 @@
-import tkinter as tk
-calculation = ""
+import tkinter as tk                                    #step 1
+calculation = ""                                        #step 2
 
-def add_to_calculation(symbol):
-    global calculation
-    calculation += str(symbol)
-    text_result.delete(1.0, "end")
-    text_result.insert(1.0, calculation)
+def add_to_calculation(symbol):                         #step 3
+    global calculation                                  #step 9
+    calculation += str(symbol)                          #step 10
+    text_result.delete(1.0, "end")                      #step 11
+    text_result.insert(1.0, calculation)                #step 12
     
    
-    
-def evaluate_calculation():
-    global calculation
-    try:
-        calculation = str(eval(calculation))
-        text_result.delete(1.0, 'end')
-        text_result.insert(1.0, calculation)
-    except:
-        clear_field()
-        text_result.insert(1.0, "Error")
-        pass
+ #"10 + 3 * (4 -2)"   
+def evaluate_calculation():                               #step 4
+    global calculation                                     #step 13
+    try:                                                    #step 14 This is when we get the error
+        calculation = str(eval(calculation))                 #step 17
+        text_result.delete(1.0, 'end')                         #step 18
+        text_result.insert(1.0, calculation)                    #step 19
+    except:                                                #step 15
+        clear_field()                                       #step 20
+        text_result.insert(1.0, "Error")                     #step 21
+        pass                                                 #step 16
 
-def clear_field():
-    global calculation
-    calculation = ""
-    text_result.delete(1.0, "end")
+def clear_field():                                        #step5
+    global calculation                                     #step 22                         
+    calculation = ""                                       #step 23
+    text_result.delete(1.0, "end")                          #step 24
     pass
 
+#build graphic user interface                             #step6
+root = tk.Tk()                                            #step6-a
+root.geometry("300x275")                                  #step6-c
 
-root = tk.Tk()
-root.geometry("300x275")
-
-text_result = tk.Text(root, height=2, width=16, font=('Arial', 24))
-text_result.grid(columnspan=5)
+text_result = tk.Text(root, height=2, width=16, font=('Arial', 24))    #step 7
+text_result.grid(columnspan=5)                                         #step 8
 
 
-btn_1 = tk.Button(root,text ="1", command=lambda:add_to_calculation(1),width=5,font=('Arial',14))
-btn_1.grid(row=2,column=1)
+btn_1 = tk.Button(root,text ="1", command=lambda:add_to_calculation(1),width=5,font=('Arial',14))    #step 25
+btn_1.grid(row=2,column=1)    #step 26
 btn_2 = tk.Button(root,text ="2", command=lambda:add_to_calculation(2),width=5,font=('Arial',14))
 btn_2.grid(row=2,column=2)
 btn_3 = tk.Button(root,text ="3", command=lambda:add_to_calculation(3),width=5,font=('Arial',14))
@@ -70,4 +70,4 @@ btn_clear = tk.Button(root,text ="C", command=clear_field,width=11,font=('Arial'
 btn_clear.grid(row=6,column=1,columnspan=2)
 btn_equals = tk.Button(root,text ="=", command=evaluate_calculation,width=11,font=('Arial',14))
 btn_equals.grid(row=6,column=3,columnspan=2)
-root.mainloop()
+root.mainloop()   #step 6-b
